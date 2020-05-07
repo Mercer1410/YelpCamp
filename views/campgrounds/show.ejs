@@ -15,7 +15,7 @@
                     <h4><a><%=item.name%></a></h4>
                     <p><%=item.description%></p>
                     <p>
-                        <em>Submitted by: <%= item.author.username %>, <%= moment(item.createdAt).fromNow() %></em>
+                        <em>Submitted by: <a href="/users/<%= item.author.id %>"><%= item.author.username %></a>, <%= moment(item.createdAt).fromNow() %></em>
                     </p>
                     <% if(currentUser && item.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin === true){ %>
                         <a class="btn btn-xs btn-warning" href="/campgrounds/<%= item._id %>/edit">Edit Campground</a>
