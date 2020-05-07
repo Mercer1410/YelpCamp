@@ -17,14 +17,14 @@ router.get("/",function(req,res){
 
 router.post("/", middleware.isLoggedIn, function(req,res){
 	var name = req.body.name;
-	var price = req.body.price;
 	var image = req.body.image;
+	var cost = req.body.cost;
 	var desc = req.body.description;
 	var author = {
 		id: req.user._id,
 		username: req.user.username
 	};
-	var NewCampground = {name: name, price: price, image: image, description: desc, author: author};
+	var NewCampground = {name: name, image: image, cost: cost, description: desc, author: author};
 	Campground.create(NewCampground, function(err, newcreated){
 		if(err){
 			console.log(err);
