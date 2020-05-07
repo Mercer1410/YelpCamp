@@ -14,7 +14,9 @@
                     <h4 class="pull-right">$<%= item.cost %>/night</h4>
                     <h4><a><%=item.name%></a></h4>
                     <p><%=item.description%></p>
-                    <p><em>Submitted By <%= item.author.username %></em></p>
+                    <p>
+                        <em>Submitted by: <%= item.author.username %>, <%= moment(item.createdAt).fromNow() %></em>
+                    </p>
                     <% if(currentUser && item.author.id.equals(currentUser._id)){ %>
                         <a class="btn btn-xs btn-warning" href="/campgrounds/<%= item._id %>/edit">Edit Campground</a>
                         <form class="delete-Form" action="/campgrounds/<%= item._id %>?_method=DELETE" method="post">
@@ -33,7 +35,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <strong><%= comment.author.username %></strong>
-                            <span class="pull-right">10 days ago</span>
+                            <span class="pull-right"><%= moment(comment.createdAt).fromNow() %></span>
                             <p><%= comment.text %></p>
                             <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
                                 <a class="btn btn-xs btn-warning" href="/campgrounds/<%= item._id %>/comments/<%= comment._id %>/edit">Edit</a>
