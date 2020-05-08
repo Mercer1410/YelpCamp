@@ -147,26 +147,6 @@ router.post('/forgot', function(req, res, next) {
               return res.redirect('back');
           }
         });
-      },
-      function(user, done) {
-        var smtpTransport = nodemailer.createTransport({
-          service: 'Gmail', 
-          auth: {
-            user: 'saxena.hrithik14@gmail.com',
-            pass: process.env.GMAILPW
-          }
-        });
-        var mailOptions = {
-          to: user.email,
-          from: 'saxena.hrithik14@gmail.com',
-          subject: 'Your password has been changed',
-          text: 'Hello,\n\n' +
-            'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
-        };
-        smtpTransport.sendMail(mailOptions, function(err) {
-          req.flash('success', 'Success! Your password has been changed.');
-          done(err);
-        });
       }
     ], function(err) {
       res.redirect('/campgrounds');
