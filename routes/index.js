@@ -138,9 +138,8 @@ router.post('/forgot', function(req, res, next) {
               user.resetPasswordExpires = undefined;
   
               user.save(function(err) {
-                req.logIn(user, function(err) {
-                  done(err, user);
-                });
+                req.flash("success", "PAssword has been successfully changed.");
+                res.redirect("/campgrounds");
               });
             })
           } else {
